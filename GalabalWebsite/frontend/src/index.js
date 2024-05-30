@@ -6,7 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Pictures100dagen from "./pages/pictures100dagen.js";
+import Pictures100dagen from "./pages/pictures100dagen";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

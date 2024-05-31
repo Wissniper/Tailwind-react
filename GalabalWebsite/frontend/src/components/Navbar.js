@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 
 function Navbar() {
   return (
@@ -14,29 +15,44 @@ function Navbar() {
         <nav>
           <ul class="flex space-x-5">
             <li>
-              <a href="/#welcome" class="text-white hover:text-red-600">
+              <HashLink
+                smooth to="/#welcome"
+                class="text-white hover:text-red-600"
+              >
                 Welcome
-              </a>
+              </HashLink>
             </li>
             <li>
-              <a href="/#info" class="text-white hover:text-red-600">
+              <HashLink
+                to="/#info"
+                class="text-white hover:text-red-600"
+              >
                 Info
-              </a>
+              </HashLink>
             </li>
             <li>
-              <a href="/#100dagen" class="text-white hover:text-red-600">
+              <HashLink
+                to="/#100dagen"
+                class="text-white hover:text-red-600"
+              >
                 100 Dagen
-              </a>
+              </HashLink>
             </li>
             <li>
-              <a href="/#locatie" class="text-white hover:text-red-600">
+              <HashLink
+                to="/#locatie"
+                class="text-white hover:text-red-600"
+              >
                 Locatie
-              </a>
+              </HashLink>
             </li>
             <li>
-              <a href="/#inschrijving" class="text-white hover:text-red-600">
-                inschrijving
-              </a>
+              <HashLink
+                to="/#inschrijving"
+                class="text-white hover:text-red-600"
+              >
+                Inschrijving
+              </HashLink>
             </li>
           </ul>
         </nav>

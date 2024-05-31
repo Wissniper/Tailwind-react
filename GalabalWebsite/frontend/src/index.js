@@ -4,9 +4,6 @@ import "./index.css";
 import "./input.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Pictures100dagen from "./pages/pictures100dagen";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,16 +17,4 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/pictures100dagen",
-    element: <Pictures100dagen />,
-  },
-]);
-createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
-);
+

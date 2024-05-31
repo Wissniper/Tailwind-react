@@ -9,9 +9,7 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
-    <body class="bg-white overflow-x-hidden overflow-y-auto">
-
-
+    <body class="bg-white overflow-x-hidden overflow-y-hidden">
       <section
         id="welcome"
         class="flex items-center justify-center min-h-screen bg-cover bg-center m-12"
@@ -23,11 +21,11 @@ function HomePage() {
           </h2>
           <p class="text-black mb-8">Discover some amazing pictures.</p>
           <Link
-                to="/pictures"
-                class="bg-gray-700 text-white px-4 py-3 rounded hover:bg-red-500"
-              >
-                Check out the pictures
-            </Link>
+            to="/pictures"
+            class="bg-gray-700 text-white px-4 py-3 rounded hover:bg-red-500"
+          >
+            Check out the pictures
+          </Link>
         </div>
       </section>
 

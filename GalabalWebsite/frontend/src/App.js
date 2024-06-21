@@ -7,6 +7,9 @@ import NotFound from "./components/NotFound";
 import SmPictures from "./pages/smPictures";
 import Footer from "./components/Footer";
 import Ticket from "./pages/tickets";
+import ButtonToNavbar from "./components/ButtonToNavbar"
+import DressCode from "./pages/dressCode";
+import Schedule from "./pages/schedule";
 
 function App() {
   return (
@@ -19,7 +22,10 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/pictures" element={<SmPictures/>}/>
         <Route path="/tickets" element={<Ticket/>}/>
+        <Route path="/dresscode" element={<DressCode/>}/>
+        <Route path="/schedule" element={<Schedule/>}/>
       </Routes>
+      <ButtonToNavbar/>
       <Footer/>
     </Router>
   );

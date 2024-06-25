@@ -10,6 +10,7 @@ import Ticket from "./pages/tickets";
 import ButtonToNavbar from "./components/ButtonToNavbar"
 import DressCode from "./pages/dressCode";
 import Schedule from "./pages/schedule";
+import AccountInformation from "./components/AccountInformation";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
         <Route path="/tickets" element={<Ticket/>}/>
         <Route path="/dresscode" element={<DressCode/>}/>
         <Route path="/schedule" element={<Schedule/>}/>
-      </Routes>
+        <Route path="/AccountInformation" element={<AccountInformation/>}/>
+      </Routes> 
       <ButtonToNavbar/>
       <Footer/>
     </Router>

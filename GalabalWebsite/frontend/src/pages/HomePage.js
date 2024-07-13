@@ -1,8 +1,7 @@
 import React from "react";
-import heroBg from "../assets/heroBgCover.jpg";
+import heroBg from "../assets/2024.jpg";
 import Bg100dagen from "../assets/Bg100dagen.jpg";
 import InfoTicket from "../assets/InfoTicket.jpg";
-import InfoDressCode from "../assets/InfoDressCode.jpg";
 import InfoSchedule from "../assets/InfoSchedule.jpg";
 import MapComponent from "../components/MapComponent";
 import { Link } from "react-router-dom";
@@ -12,7 +11,7 @@ function HomePage() {
     <body class="bg-white overflow-x-hidden overflow-y-hidden">
       <section
         id="welcome"
-        class="flex items-center justify-center min-h-screen bg-cover bg-center m-12"
+        class="flex items-center justify-center min-h-screen bg-cover bg-center m-12 mt-24"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
         <div class="text-center p-6 bg-white bg-opacity-75 rounded-lg">
@@ -46,7 +45,7 @@ function HomePage() {
               this, so you can avoid any inconveniences.
             </h4>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div
               class="p-6 bg-gray-100 rounded-lg shadow h-96"
               style={{ backgroundImage: `url(${InfoTicket})` }}
@@ -59,25 +58,6 @@ function HomePage() {
               </div>
               <Link
                 to="/Tickets"
-                class="bg-gray-800 text-white px-4 py-3 rounded hover:bg-red-500"
-              >
-                Find out more
-              </Link>
-            </div>
-            <div
-              class="p-6 bg-gray-100 rounded-lg shadow h-96"
-              style={{ backgroundImage: `url(${InfoDressCode})` }}
-            >
-              <div class="bg-black bg-opacity-30 rounded-lg">
-                <h4 class="text-xl font-semibold text-white mb-4">
-                  Dress Code
-                </h4>
-                <p class="text-white mb-4">
-                  Click below to explore the dress code.
-                </p>
-              </div>
-              <Link
-                to="/DressCode"
                 class="bg-gray-800 text-white px-4 py-3 rounded hover:bg-red-500"
               >
                 Find out more

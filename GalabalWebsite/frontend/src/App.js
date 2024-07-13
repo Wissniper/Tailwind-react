@@ -8,9 +8,11 @@ import SmPictures from "./pages/smPictures";
 import Footer from "./components/Footer";
 import Ticket from "./pages/tickets";
 import ButtonToNavbar from "./components/ButtonToNavbar"
-import DressCode from "./pages/dressCode";
 import Schedule from "./pages/schedule";
 import AccountInformation from "./components/AccountInformation";
+import BancontactPage from "./pages/Bancontact";
+import PaypallPage from "./pages/Paypall";
+import CreditCardPage from "./pages/CreditCard";
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/pictures" element={<SmPictures/>}/>
         <Route path="/tickets" element={<Ticket/>}/>
-        <Route path="/dresscode" element={<DressCode/>}/>
         <Route path="/schedule" element={<Schedule/>}/>
         <Route path="/AccountInformation" element={<AccountInformation/>}/>
+        <Route path="/Bancontact" element={<BancontactPage/>}/>
+        <Route path="/Creditcard" element={<CreditCardPage/>}/>
+        <Route path="/Paypall" element={<PaypallPage/>}/>
       </Routes> 
       <ButtonToNavbar/>
       <Footer/>

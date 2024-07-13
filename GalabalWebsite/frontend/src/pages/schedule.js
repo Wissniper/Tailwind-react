@@ -1,8 +1,12 @@
 import React from "react";
 
-function DressCode(){
-    return (
-        <p>yurrr</p>
-    )
+function SchedulesPage(){
+    
+    return(
+        <body>
+
+        </body>
+    );
 }
-export default DressCode;
+
+export default SchedulesPage;

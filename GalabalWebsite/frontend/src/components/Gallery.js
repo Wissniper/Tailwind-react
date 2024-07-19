@@ -1,24 +1,39 @@
 import React, { useState, useEffect } from "react";
 
 function Gallery() {
+  // Create a state variable to store all the media files
   const [media, setMedia] = useState([]);
+
+  // Create a state variable to store the currently selected image
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // Use the useEffect hook to import all the media files when the component mounts
   useEffect(() => {
+    // Define an asynchronous function to import all the media files
     const importAllMedia = async () => {
+      // Create a require.context object for importing image files from the ../assets/Gallery100dagen directory
       const imageContext = require.context("../assets/Gallery100dagen", false, /\.(jpg|png|gif|jpeg)$/);
+
+      // Create a require.context object for importing video files from the ../assets/Gallery100dagen directory
       const videoContext = require.context("../assets/Gallery100dagen", false, /\.(mp4|webm|ogg)$/);
 
+      // Map over the array of image file names and import each file using the imageContext function
       const importedImages = imageContext.keys().map(key => ({ type: 'image', default: imageContext(key) }));
+
+      // Map over the array of video file names and import each file using the videoContext function
       const importedVideos = videoContext.keys().map(key => ({ type: 'video', default: videoContext(key) }));
 
+      // Concatenate the arrays of imported images and videos into a single array
       const allMedia = [...importedImages, ...importedVideos];
-      
+
+      // Update the media state variable with the allMedia array
       setMedia(allMedia);
     };
 
+    // Call the importAllMedia function
     importAllMedia();
-  }, []);
+  }, []); // The second argument [] means the effect will only run once when the component mounts
+
 
   const handleImageClick = (imageSrc) => {
     setSelectedImage(imageSrc);
@@ -55,6 +70,6 @@ function Gallery() {
       )}
     </div>
   );
-}
+};
 
 export default Gallery;

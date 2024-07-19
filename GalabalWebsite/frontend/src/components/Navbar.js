@@ -2,18 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Login from "./Login";
+import Logout from "./Logout";
+import { useAuth } from "../hooks/AuthContext";
 
 function Navbar() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
   const [mouseNearTop, setmouseNearTop] = useState(false);
   const [atTop, setAtTop] = useState(false);
+  const {loggedIn} = useAuth();
 
   const handleLogin = () => {
     setShowLogin(true);
+  }
+
+  const handleLogout = () => {
+    setShowLogout(true);
+  }
+
+  const handleCloseLogin = () => {
+    setShowLogin(false);
   };
 
-  const handleClose = () => {
-    setShowLogin(false);
+  const handleCloseLogout = () => {
+    setShowLogout(false);
   };
 
   const handleMouseMove = (e) => {
@@ -96,19 +108,42 @@ function Navbar() {
                   Inschrijving
                 </HashLink>
               </li>
-              <li>
-                <p
-                  onClick={handleLogin}
-                  className="text-white hover:text-red-600 hover:cursor-pointer"
-                >
-                  Login
-                </p>
-              </li>
+              {!loggedIn &&(
+                <li>
+                  <p
+                    onClick={handleLogin}
+                    className="text-white hover:text-red-600 hover:cursor-pointer"
+                  >
+                    Login
+                  </p>
+                </li>
+              )}
+              {loggedIn &&(
+                <li>
+                  <p
+                    className="text-white hover:text-red-600 hover:cursor-pointer"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </p>
+                </li>
+              )}
+              {loggedIn &&(
+                <li>
+                  <Link
+                    to="/Account"
+                    className="text-white hover:text-red-500 cursor-pointer"
+                  >
+                    Account
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>
       </div>  
-      <Login show={showLogin} onClose={handleClose}></Login> 
+      <Login show={showLogin} onClose={handleCloseLogin}></Login> 
+      <Logout show={showLogout} onClose={handleCloseLogout}></Logout>
     </header>
     
   );

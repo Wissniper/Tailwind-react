@@ -1,12 +1,53 @@
-import React from "react";
+import React, {useState} from "react";
 import heroBg from "../assets/2024.jpg";
 import Bg100dagen from "../assets/Bg100dagen.jpg";
 import InfoTicket from "../assets/InfoTicket.jpg";
 import InfoSchedule from "../assets/InfoSchedule.jpg";
 import MapComponent from "../components/MapComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function HomePage() {
+
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    voornaam: '',
+    achternaam: '',
+    klas: '',
+    plusOneNaam: '',
+    plusOneOpSintMaarten: '',
+    naarDiner: '',
+    email: ''
+  });
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  
+  //Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/inschrijving', formData);
+      console.log('Form submitted successfully:', response.data);
+      setFormData({
+        voornaam: '',
+        achternaam: '',
+        klas: '',
+        plusOneNaam: '',
+        plusOneOpSintMaarten: '',
+        naarDiner: '',
+        email: ''
+      });
+      alert('Form successfully submitted!');
+    } catch (error) {
+      console.error('Error submitting form:', error.response.data);
+    }
+  };
+
+
   return (
     <body class="bg-white overflow-x-hidden overflow-y-hidden">
       <section
@@ -32,17 +73,19 @@ function HomePage() {
         <div class="container mx-auto text-center justify-center p-20 h-screen">
           <div class="flex flex-col items-center justify-center">
             <h3 class="text-3xl font-bold text-gray-700 mb-8">
-              Your information
+              A short introduction
             </h3>
-            <h4 class="text-xl font-semibold text-gray-600 mb-8 text-wrap text-justify w-3/4">
-              All the needed information is to be located in one of the three
-              categories. The categorie named 'Tickets' contains all the
-              informations about the pricing, etc. The categorie named 'Dress
-              Code' contains all the information about how you should dress, so
-              you can come in confidence and shine. The categorie named
-              'Schedule' contains all the information about how the Galabal will
-              be proceding on the day of. So it would be wise to regularly check
-              this, so you can avoid any inconveniences.
+            <h4 class="text-xl font-semibold text-gray-600 mb-8 text-wrap w-3/4 text-center">
+              Join us for an unforgettable evening at the Annual Gala Ball, a night of elegance, entertainment, and enchantment. This prestigious event brings together community leaders, philanthropists, and guests from all walks of life to celebrate and support our cause.
+              To find out more about the evening's schedule and to purchase your tickets, please visit the following pages:</h4>
+            <h3 class="text-2xl font-semibold text-blue-600 mb-8 text-wrap w-3/4 text-center hover:underline hover:cursor-pointer" onClick={() => navigate('/Tickets')}>Tickets</h3>
+            <h4 class="text-xl font-semibold text-gray-600 mb-8 text-wrap w-3/4 text-center">
+              Secure your place at this prestigious event by purchasing your tickets now. Various ticket options are available, including individual seats, VIP tables, and sponsorship packages.
+            </h4>
+            <h3 class="text-2xl font-semibold text-blue-600 mb-8 text-wrap w-3/4 text-center hover:underline hover:cursor-pointer" onClick={() => navigate('/Schedule')}>Schedule</h3>
+            <h4 class="text-xl font-semibold text-gray-600 mb-8 text-wrap w-3/4 text-center">
+              Get all the details about the evening’s events, from the welcome reception to the closing remarks. Plan your night and make sure you don’t miss any of the highlights.
+              Don’t miss out on this magical evening. Reserve your tickets today and be part of an event that makes a difference. We look forward to celebrating with you at the Annual Gala Ball.
             </h4>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -110,60 +153,92 @@ function HomePage() {
       <section id="inschrijving" class="py-10 bg-gray-300 mt-10">
         <div class="container mx-auto text-center">
           <h3 class="text-3xl font-bold text-white mb-8">inschrijving</h3>
-          <form class="max-w-xl mx-auto">
+          <form class="max-w-xl mx-auto" onSubmit={handleSubmit}>
             <div class="mb-4">
               <input
                 type="text"
+                name="voornaam"
+                value={formData.voornaam}
+                onChange={handleChange}
                 placeholder="Voornaam"
                 class="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
               ></input>
             </div>
-            <div class="mb-4">
-              <input
-                type="text"
-                placeholder="Achternaam"
-                class="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
-              ></input>
+            <div className="mb-4">
+                <input
+                    type="text"
+                    name="achternaam"
+                    value={formData.achternaam}
+                    onChange={handleChange}
+                    placeholder="Achternaam"
+                    className="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
+                />
             </div>
-            <div class="mb-4">
-              <input
-                type="text"
-                placeholder="Klas"
-                class="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
-              ></input>
+            <div className="mb-4">
+                <input
+                    type="text"
+                    name="klas"
+                    value={formData.klas}
+                    onChange={handleChange}
+                    placeholder="Klas"
+                    className="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
+                />
             </div>
-            <div class="mb-4">
-              <input
-                type="text"
-                placeholder="Naam plus-one"
-                class="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
-              ></input>
+            <div className="mb-4">
+                <input
+                    type="text"
+                    name="plusOneNaam"
+                    value={formData.plusOneNaam}
+                    onChange={handleChange}
+                    placeholder="Naam plus-one"
+                    className="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
+                />
             </div>
-            <div class="mb-4">
-              <p class="text-xl font-bold text-white mb-2">
-                Zit je plus-one op Sint-Maarten?
-              </p>
-              <select class="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300">
-                <option></option>
-                <option value="Ja">Ja</option>
-                <option value="Nee">Nee</option>
-              </select>
+            <div className="mb-4">
+                <p className="text-xl font-bold text-white mb-2">
+                    Zit je plus-one op Sint-Maarten?
+                </p>
+                <select
+                    name="plusOneOpSintMaarten"
+                    value={formData.plusOneOpSintMaarten}
+                    onChange={handleChange}
+                    className="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
+                >
+                    <option value=""></option>
+                    <option value="Ja">Ja</option>
+                    <option value="Nee">Nee</option>
+                </select>
             </div>
-            <div class="mb-4">
-              <p class="text-xl font-bold text-white mb-2">
-                Ga je naar het Diner (recht voor het Galabal)?
-              </p>
-              <select class="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300">
-                <option></option>
-                <option value="Ja">Ja</option>
-                <option value="Nee">Nee</option>
-              </select>
+            <div className="mb-4">
+                <p className="text-xl font-bold text-white mb-2">
+                    Ga je naar het Diner (recht voor het Galabal)?
+                </p>
+                <select
+                    name="naarDiner"
+                    value={formData.naarDiner}
+                    onChange={handleChange}
+                    className="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
+                >
+                    <option value=""></option>
+                    <option value="Ja">Ja</option>
+                    <option value="Nee">Nee</option>
+                </select>
+            </div>
+            <div className="mb-4">
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="example@example.com"
+                    className="w-full p-3 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-gray-300"
+                />
             </div>
             <button
-              type="submit"
-              class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-red-500"
+                type="submit"
+                className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-red-500"
             >
-              Inschrijven
+                Inschrijven
             </button>
           </form>
         </div>

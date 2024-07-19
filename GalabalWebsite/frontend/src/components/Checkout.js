@@ -73,7 +73,6 @@ function Checkout({ show, onClose }) {
                 {/*redirection in backend */}
             </div>
             </form>
-            
         </div>
       </div>
     </body>

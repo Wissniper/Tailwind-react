@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from 'react';
 
-function PaypallPage(){
+function PayPalCheckout() {
 
 }
-export default PaypallPage;
+
+export default PayPalCheckout;

@@ -13,27 +13,35 @@ import AccountInformation from "./components/AccountInformation";
 import BancontactPage from "./pages/Bancontact";
 import PaypallPage from "./pages/Paypall";
 import CreditCardPage from "./pages/CreditCard";
+import AccountPage from "./pages/Account";
+import { AuthProvider } from "./hooks/AuthContext";
+import { AccProvider } from "./hooks/AccContext";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="" element={<HomePage/>}/>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/pictures/100dagen" element={<Pictures100Dagen/>}/>
-        <Route path="*" element={<NotFound />} />
-        <Route path="/pictures" element={<SmPictures/>}/>
-        <Route path="/tickets" element={<Ticket/>}/>
-        <Route path="/schedule" element={<Schedule/>}/>
-        <Route path="/AccountInformation" element={<AccountInformation/>}/>
-        <Route path="/Bancontact" element={<BancontactPage/>}/>
-        <Route path="/Creditcard" element={<CreditCardPage/>}/>
-        <Route path="/Paypall" element={<PaypallPage/>}/>
-      </Routes> 
-      <ButtonToNavbar/>
-      <Footer/>
-    </Router>
+    <AuthProvider>
+      <AccProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="" element={<HomePage/>}/>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/pictures/100dagen" element={<Pictures100Dagen/>}/>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/pictures" element={<SmPictures/>}/>
+          <Route path="/tickets" element={<Ticket/>}/>
+          <Route path="/schedule" element={<Schedule/>}/>
+          <Route path="/AccountInformation" element={<AccountInformation/>}/>
+          <Route path="/Bancontact" element={<BancontactPage/>}/>
+          <Route path="/Creditcard" element={<CreditCardPage/>}/>
+          <Route path="/Paypall" element={<PaypallPage/>}/>
+          <Route path="/Account" element={<AccountPage/>}/>
+        </Routes> 
+        <ButtonToNavbar/>
+        <Footer/>
+      </Router>
+    </AccProvider>
+    </AuthProvider>
   );
 }
 
